@@ -38,7 +38,7 @@ const validationSchema = Yup.object().shape({
 function FormCompo() {
   return (
     <div className={styles.container}>
-      <h1 className={styles.mainTxt}>Project Sumbission</h1>
+      <h1 className={styles.mainTxt}>Project Submission</h1>
       <div className={styles.elementwrap}>
         <Formik
           initialValues={{
@@ -50,10 +50,13 @@ function FormCompo() {
             address: "",
             projectname: "",
           }}
-          onSubmit={(values) => console.log(values)}
+          onSubmit={(values) => {
+            console.log(values);
+            alert("Your response is submited");
+          }}
           validationSchema={validationSchema}
         >
-          {({ handleSubmit, errors }) => (
+          {({ errors }) => (
             <>
               <Form className={styles.forminput}>
                 <Field name="name" placeholder="Enter your name" />
@@ -80,6 +83,13 @@ function FormCompo() {
                 )}
                 <button type="submit" className={styles.submitBtn}>
                   Submit
+                </button>
+                <button
+                  type="reset"
+                  className={styles.submitBtn}
+                  style={{ margin: 10 }}
+                >
+                  Reset
                 </button>
               </Form>
             </>
