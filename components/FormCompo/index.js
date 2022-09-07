@@ -5,25 +5,34 @@ import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().required().email().label("Email"),
+  email: Yup.string()
+    .required("This is a required field")
+    .email()
+    .label("Email"),
   name: Yup.string()
-    .required()
-    .min(5, "Too short")
-    .matches(/^[aA-zZ\s]+$/, "Not valid input "),
+    .matches(/^[aA-zZ\s]+$/, "Not valid input ")
+    .required("This is a required field")
+    .min(5, "Too short"),
   class: Yup.string()
-    .required()
+    .matches(/^[A-Za-z0-9 ]+$/, "Not a valid input")
+    .required("This is a required field")
+    // .matches(/^[_\-\+]{1}.*/, "It cannot start with these charectors")
+    .min(5, "Too short"),
+
+  admissionNumber: Yup.number()
     .min(5, "Too short")
-    .matches(/^[A-Za-z0-9 ]+$/, "Not valid input "),
-  admissionNumber: Yup.number().required().min(5, "Too short"),
-  phonenumber: Yup.number().required().min(10, "Too short"),
+    .required("This is a required field"),
+  phonenumber: Yup.number()
+    .required("This is a required field")
+    .min(10, "Too short"),
   address: Yup.string()
-    .required()
+    .matches(/^[A-Za-z0-9 ]+$/, "Not valid input ")
     .min(5, "Too short")
-    .matches(/^[A-Za-z0-9 ]+$/, "Not valid input "),
+    .required("This is a required field"),
   projectname: Yup.string()
-    .required()
+    .matches(/^[A-Za-z0-9 ]+$/, "Not valid input ")
     .min(5, "Too short")
-    .matches(/^[A-Za-z0-9 ]+$/, "Not valid input "),
+    .required("This is a required field"),
 });
 
 function FormCompo() {
